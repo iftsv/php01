@@ -1,0 +1,411 @@
+#modal_form {
+	width: 300px; 
+	height: 100px; /* Рaзмеры дoлжны быть фиксирoвaны */
+	border-radius: 5px;
+	border: 3px #000 solid;
+	background: #fff;
+	position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */
+	top: 45%; /* oтступaем сверху 45%, oстaльные 5% пoдвинет скрипт */
+	left: 50%; /* пoлoвинa экрaнa слевa */
+	margin-top: -150px;
+	margin-left: -150px; /* тут вся мaгия центрoвки css, oтступaем влевo и вверх минус пoлoвину ширины и высoты сooтветственнo =) */
+	display: none; /* в oбычнoм сoстoянии oкнa не дoлжнo быть */
+	opacity: 0; /* пoлнoстью прoзрaчнo для aнимирoвaния */
+	z-index: 5; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
+	padding: 20px 10px;
+}
+/* Кнoпкa зaкрыть для тех ктo в тaнке) */
+#modal_form #modal_close {
+	width: 21px;
+	height: 21px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+	display: block;
+}
+/* Пoдлoжкa */
+#overlay {
+	z-index:3; /* пoдлoжкa дoлжнa быть выше слoев элементoв сaйтa, нo ниже слoя мoдaльнoгo oкнa */
+	position:fixed; /* всегдa перекрывaет весь сaйт */
+	background-color:#000; /* чернaя */
+	opacity:0.8; /* нo немнoгo прoзрaчнa */
+	-moz-opacity:0.8; /* фикс прозрачности для старых браузеров */
+	filter:alpha(opacity=80);
+	width:100%; 
+	height:100%; /* рaзмерoм вo весь экрaн */
+	top:0; /* сверху и слевa 0, oбязaтельные свoйствa! */
+	left:0;
+	cursor:pointer;
+	display:none; /* в oбычнoм сoстoянии её нет) */
+}
+
+/* Убираем маркеры в меню*/
+
+ul.style_menu,
+ul.style_spec {
+    list-style-type: none;
+    list-style: none;
+    padding-left: 0;
+}
+
+/* задаем стиль для списка характеристики товара */
+
+ul.style_spec {
+    background-color: #c0e5f1;
+}
+
+/* задаем картинку для маркированого списка значений характеристик товара*/
+
+ul.style_spec_value {
+    list-style-image: url('../img/icon_spec_list.png');
+
+}
+
+/* задаем стили для ссылок в меню*/
+
+ul.style_menu a {
+    color: #00a8e1;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+
+ul.style_menu a:link {
+    text-decoration: none;
+}
+
+ul.style_menu a:visited {
+    text-decoration: none;
+}
+
+ul.style_menu a:hover {
+    text-decoration: underline;
+    color: #f7b600;
+    font-weight: 600;
+}
+
+ul.style_menu a:active {
+    text-decoration: underline;
+}
+
+
+/* цвет фона на всех страницах */
+
+body {
+    background-color: #f8f8f8;
+}
+
+/* задаем стили для заголовков на странице описания товара */
+
+.headline_for_goods {
+    color: black;
+    font-size: 18px;
+    font-weight: 400;
+    background-color: #EAEAEA;
+}
+
+/* задаем стили для текста описания товара */
+
+p.description_short {
+    color: #707070;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 16px;
+}
+
+p.description_full {
+    color: #484343;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+/* стили для страницы контакты */
+
+.style_input {
+    margin-bottom: 10px;
+    border-radius: 3px;
+    padding-left: 10px;
+}
+
+input.style_input {
+    height: 35px;
+    width: 300px;
+    font-size: 16px;
+}
+
+textarea.style_input {
+    height: 150px;
+    width: 500px;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-style: italic;
+}
+
+/* стиль для изображений в каталоге */
+
+img.catalog_img {
+    border: 2px solid #00a8e1;
+}
+
+img.goods_img {
+    border: 2px solid #00a8e1;
+}
+
+/* При вводе Email менять цвет текста и цвет поля */
+
+input[type="email"]:focus {
+    color: #f7b600;
+    background-color: black;
+}
+
+/* в текстовых полях каждое слово должно начинаться с большой буквы */
+
+.style_input:not([type="email"]),
+textarea.style_input {
+    text-transform: capitalize;
+}
+
+/* При наведении рамка исчезает, но картинка не смещается */
+
+img.goods_img:hover {
+    border: 0px solid #00a8e1;
+    padding: 2px;
+}
+
+/* На странице товара сделать первую букву первого слова другим шрифтом и размером */
+
+p.description_full:first-letter {
+    color: #f7b600;
+    font-weight: 600;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+/*
+a. Создать родительский блок с классом container, задать ширину и по центру экрана
+b. Задать блоку с классом header значение высоты.
+c. Отодвинуть логотип от левого края.
+d. Из вертикального меню сделать горизонтальное.
+e. Разместить меню справа от логотипа.
+f. Прижать меню к правому краю.
+*/
+
+.container {
+    display: flex; 
+    flex-direction: column;
+    /*flex: 1 0 auto;*/
+    width: 80%;
+    /*height: 100%;*/
+    margin: auto;
+    min-height: 100%;
+}
+
+.header, header {
+    height: 10%;
+    background-image: url("../img/header-background.png");
+}
+
+.header h1, header h1, .header > a, header > a {
+    text-shadow: #00a8e1 1px 1px 0, #00a8e1 2px 2px 0, 
+                 #00a8e1 3px 3px 0;
+    color: #f7b600;
+    display: inline;
+    text-decoration: none;
+}
+
+.header, header, .header ul, header ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header img, header img {
+    margin-left: 30px;
+    vertical-align: middle;
+}
+
+.header ul li a, header ul li a {
+    padding: 0 30px;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.content {
+    width: 100%;
+    flex: 1 0 auto;
+}
+
+/*
+a. Задать высоту.
+b. Поменять цвет фона.
+c. Прижать текст “Все права защищены” к правому краю и отодвинуть от верхней и правой границы.
+*/
+
+footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    margin: 30px 0px 0px 0px;
+    clear: both;
+    background-image: url("../img/footer-background.png");
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.footer_phone, .footer_phone > a {
+    text-decoration: none;
+    text-shadow: #00a8e1 1px 1px 0, #00a8e1 2px 2px 0, 
+                 #00a8e1 3px 3px 0;
+    color: #f7b600;
+    font-weight: bold;
+    font-size: 25px;
+    width: 20%;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.footer_menu, .footer_menu a, .footer_menu ul {
+    width: 60%;
+    margin-top: 0px;
+    text-decoration: none;
+    color: #f7b600;
+    font-weight: bold;
+    list-style: none;
+    margin-top: 10px;
+}
+
+.footer_text {
+    width: 20%;
+    margin-top: 10px;
+    margin-right: 50px;
+    text-shadow: #00a8e1 1px 1px 0, #00a8e1 2px 2px 0, 
+                 #00a8e1 3px 3px 0;
+    color: #f7b600;
+    font-weight: bold;
+    margin: 15px;
+}
+
+
+/*
+a. Разместить краткое описание товара справа от картинки
+b. Добавить кнопку “Купить”
+c. Присвоить наведение и нажатие на кнопку “Купить”
+*/
+
+div.goods_description {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div.goods_img {
+    margin-right: 50px;
+}
+
+.button_buy {
+    width: 150px;
+    height: 50px;
+}
+.button_buy:hover {
+    cursor: pointer;
+}
+.button_buy:active {
+    cursor: pointer;
+}
+
+
+/*
+a. Создать блоки для картинки и ссылки на просмотр товара каталога
+b. Расположить элементы каталога горизонтально.
+*/
+
+.catalog_list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.catalog_item {
+    /*
+    width: 250px;
+    height: 250px;
+    */
+    margin: 50px;
+}
+
+/* Добавить эффект наведения на товары на странице каталога */
+.catalog_item:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+#map {
+    width: 100%;
+    height: 374px;
+}
+
+.sale_content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sale_content > .catalog_item {
+    position: relative;
+    text-align: center;
+}
+
+.sale_label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: #00a8e1 1px 1px 0, #00a8e1 2px 2px 0, 
+                 #00a8e1 3px 3px 0;
+    color: #f7b600;
+    font-weight: bold;
+}
+
+ /* Добавить хлебные крошки */
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eee;
+}
+
+ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+}
+
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+}
+
+ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+} 
+
+html, body {
+    /*width: 100%;*/
+    height: 100%;
+}
+
+.header, .content, .main_page_sale, footer, header {
+    flex-shrink: 0;
+}
