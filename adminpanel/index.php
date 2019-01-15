@@ -10,22 +10,17 @@ if (!UserIsAdmin()) {
     <head>
         <meta charset="UTF-8">
         <title>Admin Panel</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../public/css/style.css">
+        <script type="text/javascript" src="../public/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../public/js/async.js"></script>
     </head>
     <body>
         <div class="container">
             <header>
-                <a href="//lp.test"><img src="../img/logo_mini.png" alt="">
-                    <h1>Ноутбуки от Laptops Heaven [LH]</h1>
-                </a>
-                <ul class="style_menu">
-                    <li><a href="//lp.test">Главная</a></li>
-                    <li><a href="../pages/catalog.php">Каталог</a></li>
-                    <li><a href="../pages/contacts.html">Контакты</a></li>
-                </ul>
+                <? include "../template/header.php";?>
             </header>
             <ul class="authpanel">
-                <?echo BuildAuthMenu();?>
+                <?echo BuildAuthMenu($sqlcon);?>
             </ul>
             <ul class="breadcrumb">
                 <li><a href="//lp.test">Главная</a></li>
@@ -36,14 +31,14 @@ if (!UserIsAdmin()) {
                     <tr>
                         <td style="width: 20%">
                             <p><a href="additem.php" class="admin_button">Добавить новый товар</a></p>
-                            <p><a href="showarchive.php" class="admin_button">Архив</a></p>
+                            <p><a href="archive.php" class="admin_button">Архив</a></p>
                             <p><a href="../order/" class="admin_button">Заказы</a></p>
                             <p><a href="user.php" class="admin_button">Пользователи</a></p>
                         </td>
                         <td>
                             <? $items = ShowAllItems($sqlcon, 0);
                             if ($items) {?>
-                                <div class="catalog_list">
+                                <div class="admin_catalog_list">
                                 <?foreach ($items as $item) {?>
                                     <div class="catalog_item">
                                     <img class="catalog_img" src="<?=$item['img_min'];?>" alt="<?=$item['item_name'];?>">
@@ -51,7 +46,7 @@ if (!UserIsAdmin()) {
                                     <div>Цена: <?=$item['item_price'];?> ₽</div>
                                     <div><a href="edititem.php?id=<?=$item['id_item'];?>" class="admin_button_op">Редактировать</a></div>
                                     <br>
-                                    <div><a href="archiveitem.php?id=<?=$item['id_item'];?>" class="admin_button_op">Убрать в архив</a></div>
+                                    <div><a href="#" onclick="update_archive_status_of_item(<?=$item['id_item'];?>, 1);" class="admin_button_op">Убрать в архив</a></div>
                                     </div>
                                 <?
                                 }
@@ -68,16 +63,8 @@ if (!UserIsAdmin()) {
                 </table>
             </main>
             <footer>
-                <div class="footer_phone"><a href="tel:88005556677">8 (800) 555 6677</a></div>
-                <div class="footer_menu">
-                    <ul class="footer_menu">
-                        <li><a href="/">ГЛАВНАЯ</a></li>
-                        <li><a href="catalog.html">КАТАЛОГ</a></li>
-                        <li><a href="contacts.html">КОНТАКТЫ</a></li>
-                    </ul>
-                </div>
-                <div class="footer_text">&copy; Все права защищены, 2018</div>
-            </footer>         
+                <? include "../template/footer.php";?>
+            </footer>
         </div>
     </body>
 </html>

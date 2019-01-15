@@ -6,20 +6,13 @@ require_once('../config/config.php');
     <head>
         <meta charset="UTF-8">
         <title>Вход в магазин</title>
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/view.css">
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/view.css">
     </head>
     <body>
         <div class="container">
             <header>
-                <a href="//lp.test"><img src="../img/logo_mini.png" alt="">
-                    <h1>Магазин ноутбуков Laptops Heaven [LH]</h1>
-                </a>
-                <ul class="style_menu">
-                    <li><a href="//lp.test">Главная</a></li>
-                    <li><a href="../pages/catalog.php">Каталог</a></li>
-                    <li><a href="../pages/contacts.html">Контакты</a></li>
-                </ul>
+                <? include "../template/header.php";?>
             </header>
             <main class="content">
                             <form id="form_26367" class="appnitro"  method="POST" action="" accept-charset="utf-8">
@@ -41,15 +34,7 @@ require_once('../config/config.php');
                             <a href='<?="//" . DOMAIN . "/public/registration.php"?>'>Регистрация</a>
             </main>
             <footer>
-                <div class="footer_phone"><a href="tel:88005556677">8 (800) 555 6677</a></div>
-                <div class="footer_menu">
-                    <ul class="footer_menu">
-                        <li><a href="/">ГЛАВНАЯ</a></li>
-                        <li><a href="catalog.html">КАТАЛОГ</a></li>
-                        <li><a href="contacts.html">КОНТАКТЫ</a></li>
-                    </ul>
-                </div>
-                <div class="footer_text">&copy; Все права защищены, 2018</div>
+                <? include "../template/footer.php";?>
             </footer>
         </div>
     </body>
