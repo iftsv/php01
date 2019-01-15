@@ -6,23 +6,20 @@ require_once('../config/config.php');
 <html lang="ru">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Заказы</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../public/css/style.css">
+        <link rel="stylesheet" href="../public/css/view.css">
+        <script type="text/javascript" src="../public/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../public/js/async.js"></script>
     </head>
     <body>
         <div class="container">
             <header>
-                <a href="//lp.test"><img src="../img/logo_mini.png" alt="">
-                    <h1>Ноутбуки от Laptops Heaven [LH]</h1>
-                </a>
-                <ul class="style_menu">
-                    <li><a href="//lp.test">Главная</a></li>
-                    <li><a href="../pages/catalog.php">Каталог</a></li>
-                    <li><a href="../pages/contacts.html">Контакты</a></li>
-                </ul>
+                <? include "../template/header.php";?>
             </header>
             <ul class="authpanel">
-                <?echo BuildAuthMenu();?>
+                <?echo BuildAuthMenu($sqlcon);?>
             </ul>
             <ul class="breadcrumb">
                 <li><a href="//lp.test">Главная</a></li>
@@ -32,27 +29,19 @@ require_once('../config/config.php');
                 <table style="width: 100%;" class="adminpanel-item">
                     <tr>
                         <td style="width: 20%">
-                            <p><a href="#" class="admin_button">Кнопка 1</a></p>
-                            <p><a href="#" class="admin_button">Кнопка 2</a></p>
+                            <p><a href="#" class="admin_button" onclick="document.location.reload(true);">Обновить статус</a></p>
                         </td>
-                        <td>
-                            Содержимое формы
+                        <td class="order_form_info">
+                            <? 
+                                echo FillOutOrderForm($sqlcon);
+                            ?>
                         </td>
                     </tr>
-
                 </table>
             </main>
             <footer>
-                <div class="footer_phone"><a href="tel:88005556677">8 (800) 555 6677</a></div>
-                <div class="footer_menu">
-                    <ul class="footer_menu">
-                        <li><a href="/">ГЛАВНАЯ</a></li>
-                        <li><a href="catalog.html">КАТАЛОГ</a></li>
-                        <li><a href="contacts.html">КОНТАКТЫ</a></li>
-                    </ul>
-                </div>
-                <div class="footer_text">&copy; Все права защищены, 2018</div>
-            </footer>         
+                <? include "../template/footer.php";?>
+            </footer>
         </div>
     </body>
 </html>

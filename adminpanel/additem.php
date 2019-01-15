@@ -10,9 +10,9 @@ if (!UserIsAdmin()) {
     <head>
         <meta charset="UTF-8">
         <title>Добавление товара</title>
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/view.css">
-        <script type="text/javascript" src="../js/view.js"></script>
+        <link rel="stylesheet" href="../public/css/style.css">
+        <link rel="stylesheet" href="../public/css/view.css">
+        <script type="text/javascript" src="../public/js/view.js"></script>
     </head>
     <body>
 <?
@@ -53,21 +53,14 @@ if (isset($_POST["item_name"]) && isset($_FILES["item_img"])) {
 
         <div class="container">
             <header>
-                <a href="//lp.test"><img src="../img/logo_mini.png" alt="">
-                    <h1>Магазин ноутбуков Laptops Heaven [LH]</h1>
-                </a>
-                <ul class="style_menu">
-                    <li><a href="//lp.test">Главная</a></li>
-                    <li><a href="../pages/catalog.php">Каталог</a></li>
-                    <li><a href="../pages/contacts.html">Контакты</a></li>
-                </ul>
+                <? include "../template/header.php";?>
             </header>
             <ul class="authpanel">
-                <?echo BuildAuthMenu();?>
+                <?echo BuildAuthMenu($sqlcon);?>
             </ul>
             <ul class="breadcrumb">
-                <li><a href="//lp.test">Главная</a></li>
-                <li><a href="//lp.test/adminpanel">Admin Panel</a></li>
+                <li><a href="//<?=DOMAIN?>">Главная</a></li>
+                <li><a href="//<?=DOMAIN?>/adminpanel">Admin Panel</a></li>
                 <li>Добавление товара</li>
             </ul>
             <main class="content">
@@ -88,7 +81,7 @@ if (isset($_POST["item_name"]) && isset($_FILES["item_img"])) {
                                         <label class="description" for="element_2">Короткое описание товара </label><div><textarea id="element_2" name="item_desc_short" class="element textarea small" required autocomplete="on"></textarea></div> 
                                     </li>
                                     <li id="li_4">
-                                        <label class="description" for="element_4">Подробное описание товара </label><div><textarea id="element_4" name="item_desc_full" class="element textarea small" required autocomplete="on"></textarea></div> 
+                                        <label class="description" for="element_4">Подробное описание товара (можно использовать HTML-тег &lt;p&gt;)</label><div><textarea id="element_4" name="item_desc_full" class="element textarea small" required autocomplete="on"></textarea></div> 
                                     </li>
                                     <li id="li_3">
                                         <label class="description" for="element_3">Цена</label><div><input id="element_3" name="item_price" class="element text small" type="text" maxlength="255" pattern="^\d+(\.|\,)\d{2}$" value="" required autocomplete="on"/></div>
@@ -150,16 +143,8 @@ if (isset($_POST["item_name"]) && isset($_FILES["item_img"])) {
                 </table>
             </main>
             <footer>
-                <div class="footer_phone"><a href="tel:88005556677">8 (800) 555 6677</a></div>
-                <div class="footer_menu">
-                    <ul class="footer_menu">
-                        <li><a href="//eliastestsite.000webhostapp.com">ГЛАВНАЯ</a></li>
-                        <li><a href="catalog.html">КАТАЛОГ</a></li>
-                        <li><a href="contacts.html">КОНТАКТЫ</a></li>
-                    </ul>
-                </div>
-                <div class="footer_text">&copy; Все права защищены, 2018</div>
-            </footer>         
+                <? include "../template/footer.php";?>
+            </footer>
         </div>
     </body>
 </html>

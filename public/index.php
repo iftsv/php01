@@ -6,23 +6,15 @@ require_once('../config/config.php');
     <head>
         <meta charset="UTF-8">
         <title>Laptops Heaven [LH]</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../public/css/style.css">
     </head>
     <body>
         <div class="container">
             <header>
-                <a href="/"><img src="img/logo_mini.png" alt="">
-                    <h1>Ноутбуки от Laptops Heaven [LH]</h1>
-                </a>
-                <ul class="style_menu">
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="pages/catalog.php">Каталог</a></li>
-                    <li><a href="pages/contacts.html">Контакты</a></li>
-                    <li><a href="pages/feedback.php">Отзывы</a></li>
-                </ul>
+                <? include "../template/header.php";?>
             </header>
             <ul class="authpanel">
-                <?echo BuildAuthMenu();?>
+                <?echo BuildAuthMenu($sqlcon);?>
             </ul>
             <main class="content">
                 <div class="main_page_welcome">
@@ -36,7 +28,7 @@ require_once('../config/config.php');
                            if ($items) {
                            foreach ($items as $item) { ?>
                         <div class="catalog_item">
-                            <a href="pages/showitem.php?id=<?=$item['id_item'];?>">
+                            <a href="/public/item.php?id=<?=$item['id_item'];?>">
                                 <img class="catalog_img" src="<?=$item['img_min'];?>" alt="<?=$item['item_name'];?>">
                             </a>
                             <div class="sale_label">РАСПРОДАЖА</div>
@@ -53,16 +45,7 @@ require_once('../config/config.php');
             </main>
             
             <footer>
-                <div class="footer_phone"><a href="tel:88005556677">8 (800) 555 6677</a></div>
-                <div class="footer_menu">
-                    <ul class="footer_menu">
-                        <li><a href="/">ГЛАВНАЯ</a></li>
-                        <li><a href="pages/catalog.php">КАТАЛОГ</a></li>
-                        <li><a href="pages/contacts.html">КОНТАКТЫ/РЕКВИЗИТЫ</a></li>
-                        <li><a href="pages/feedback.php">ОТЗЫВЫ</a></li>
-                    </ul>
-                </div>
-                <div class="footer_text">&copy; Все права защищены, 2018</div>
+                <? include "../template/footer.php";?>
             </footer>
         </div>
     </body>
