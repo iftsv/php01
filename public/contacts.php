@@ -57,7 +57,7 @@
                     var map = new google.maps.Map(document.getElementById('map'), {zoom: 18, center: store});
                     var marker = new google.maps.Marker({position: store, map: map});}
                     </script>
-                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***&callback=initMap">
+                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%YOUR_API_KEY%>&callback=initMap">
                     </script>
                 </div>
             </main>
